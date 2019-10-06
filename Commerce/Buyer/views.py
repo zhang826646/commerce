@@ -182,14 +182,14 @@ def pay_order_more(request):
     return render(request,'buyer/pay_order.html',locals())
 
 
-from alipay import AliPay
-from Qshop.settings import alipay_private_key_string,alipay_public_key_string
+from alipay import Alipay
+from Commerce.settings import alipay_private_key_string,alipay_public_key_string
 def AlipayView(request):
     order_number=request.GET.get('order_number')
     order_total=request.GET.get('total')
 
     # 实例化支付
-    alipay = AliPay(
+    alipay = Alipay(
         appid='2016101200667735',
         app_notify_url=None,
         app_private_key_string=alipay_private_key_string,
