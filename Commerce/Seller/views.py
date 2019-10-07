@@ -153,3 +153,13 @@ def send_login_code(request):
         result["code"] = 400
         result["data"] = "请求错误"
     return JsonResponse(result)
+
+from django.core.paginator import Paginator
+from django.shortcuts import render_to_response
+def newList(request):
+    p = 1
+    page_size = 6
+    articles = Goods.objects.order_by("-public_time")
+    article_list = Paginator(articles,page_size) #进行分页
+    page_article= article_list.page(p)
+    return render_to_response("newlist.html",locals())
